@@ -8,12 +8,12 @@ use std::io;
 
 fn main() {
     let mut rng = rand::rng();
-    let mut randomships: i32 = rng.random_range(1..=10);
+    let randomships: i32 = rng.random_range(1..=10);
     let mut misses = 0;
     let mut hits = 0;
 
     let mut sunken = vec![];
-    let mut totalships = vec!["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5", "D1", "D2", "D3", "D4", "D5", "E1", "E2", "E3", "E4", "E5"];
+    let totalships = vec!["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5", "D1", "D2", "D3", "D4", "D5", "E1", "E2", "E3", "E4", "E5"];
 
     println!("{}", randomships);
 
