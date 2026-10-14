@@ -4,7 +4,7 @@ Date: 2026-09-11
 Program Details: <Randomly chosen boards where you have yo guess tiles to hit battleships.>
 */
 use rand::Rng;
-use std::io;
+use std::io::{self, ErrorKind::QuotaExceeded};
 
 fn main() {
     let mut rng = rand::rng();
@@ -13,82 +13,159 @@ fn main() {
     let mut hits = 0;
 
     let mut sunken = vec![];
-    let totalships = vec!["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5", "D1", "D2", "D3", "D4", "D5", "E1", "E2", "E3", "E4", "E5"];
+    let mut totalships = vec!["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5", "D1", "D2", "D3", "D4", "D5", "E1", "E2", "E3", "E4", "E5"];
 
-    println!("{}", randomships);
+
+        println!(" {} |\n {} |\n {} |\n {} |\n {} |", totalships[0], totalships[1], totalships[2], totalships[3], totalships[4]);
 
     loop {
 
         let mut input = String::new();
-        println!("Pick a box from 1-25 by typing the letter followed by the number of the corresponding tile and press enter.");
+        println!("Pick a box from from a 5 by 5 grid by typing the letter followed by the number of the corresponding tile and press enter.");
         io::stdin().read_line(&mut input).expect("Failed to read line");
         let guess = input.trim().to_uppercase();
 
-        if randomships == 1 && guess == "A1".to_string() || guess == "A2".to_string() || guess == "C3".to_string() || guess == "C4".to_string() || guess == "C5".to_string() && !sunken.contains(&guess) {
-            println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
+
+    if matches!(guess.as_str(), "A1" | "A2" | "C3" | "C4" | "C5")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
+
+
+    if matches!(guess.as_str(), "A3" | "B3" | "C3" | "E2" | "E3")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
+
+    if matches!(guess.as_str(), "D3" | "D4" | "D5" | "A4" | "B4")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
+
+    if matches!(guess.as_str(), "C5" | "D5" | "E5" | "B1" | "B2")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
+    
+    if matches!(guess.as_str(), "D2" | "D3" | "D4" | "E1" | "E2")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
+
+    if matches!(guess.as_str(), "B5" | "C5" | "D5" | "D1" | "E1")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
+
+    if matches!(guess.as_str(), "A1" | "A2" | "A3" | "A4" | "A5")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
+
+    if matches!(guess.as_str(), "E3" | "E4" | "E5" | "C2" | "D2")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}    
             
-        
-        else if randomships == 2 && guess == "A3".to_string() || guess == "B3".to_string() || guess == "C3".to_string() || guess == "E2".to_string() || guess == "E3".to_string() && !sunken.contains(&guess) {
-            println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
-
-        else if randomships == 3 && guess == "D3".to_string() || guess == "D4".to_string() || guess == "D5".to_string() || guess == "A4".to_string() || guess == "B4".to_string() && !sunken.contains(&guess) {
-            println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
-           
-
-        else if randomships == 4 && guess == "C5".to_string() || guess == "D5".to_string() || guess == "E5".to_string() || guess == "B1".to_string() || guess == "B2".to_string() && !sunken.contains(&guess) {
-           println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
+    if matches!(guess.as_str(), "B1" | "B2" | "B3" | "D4" | "E4")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
             
-
-        else if randomships == 5 && guess == "D2".to_string() || guess == "D3".to_string() || guess == "D4".to_string() || guess == "E1".to_string() || guess == "E2".to_string() && !sunken.contains(&guess) {
-                println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
-            
-
-        else if randomships == 6 && guess == "B5".to_string() || guess == "C5".to_string() || guess == "D5".to_string() || guess == "D1".to_string() || guess == "E1".to_string() && !sunken.contains(&guess) {
-            println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
-
-        else if randomships == 7 && guess == "A1".to_string() || guess == "A2".to_string() || guess == "A3".to_string() || guess == "A4".to_string() || guess == "A5".to_string() && !sunken.contains(&guess) {
-           println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
-            
-        else if randomships == 8 && guess == "E3".to_string() || guess == "E4".to_string() || guess == "E5".to_string() || guess == "C2".to_string() || guess == "D2".to_string() && !sunken.contains(&guess) {
-            println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
-            
-
-        else if randomships == 9 && guess == "B1".to_string() || guess == "B2".to_string() || guess == "B3".to_string() || guess == "D4".to_string() || guess == "E4".to_string() && !sunken.contains(&guess) {
-           println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
-            
-
-        else if randomships == 10 && guess == "D2".to_string() || guess == "D3".to_string() || guess == "D4".to_string() || guess == "A4".to_string() || guess == "B4".to_string() && !sunken.contains(&guess) {
-            println!("HIT!"); 
-                hits += 1;
-                sunken.push(guess);
-            }
+    if matches!(guess.as_str(), "D2" | "D3" | "D4" | "A4" | "B4")
+       && !sunken.contains(&guess)
+       {
+       println!("HIT!");
+       hits += 1;
+       sunken.push(guess.clone());
+       for i in 0..totalships.len() {
+       
+    if totalships[i] == guess {
+        totalships[i] = "X";
+        }
+    }
+}
 
         else if sunken.contains(&guess) {
             println!("Ship Already Hit");
